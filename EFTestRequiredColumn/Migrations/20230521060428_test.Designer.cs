@@ -11,17 +11,18 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EFTestRequiredColumn.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230521055222_init")]
-    partial class init
+    [Migration("20230521060428_test")]
+    partial class test
     {
+        /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.0")
+                .HasAnnotation("ProductVersion", "7.0.0")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
             modelBuilder.Entity("EFTestRequiredColumn.Customer", b =>
                 {
@@ -29,7 +30,7 @@ namespace EFTestRequiredColumn.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("CustomerKey"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("CustomerKey"));
 
                     b.Property<string>("CustomerId")
                         .HasMaxLength(20)
